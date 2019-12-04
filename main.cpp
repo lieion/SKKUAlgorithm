@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cstring>
 #include <time.h>
-
+//
 typedef struct city {
 	char name;
 	int pos_x;
