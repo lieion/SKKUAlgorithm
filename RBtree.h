@@ -20,7 +20,7 @@ struct customer_info {
 int array_RBTree[501];  //RBTree
 int temp1[501];
 
-struct customer_info reservation[50];
+struct customer_info reservation[500];
 
 
 enum RBtree_node_color { RED, BLACK };
