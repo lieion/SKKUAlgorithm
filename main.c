@@ -33,9 +33,6 @@ int main() {
 		do {
 			flag = 0;
 			printf("\t\t\t\t\t  -> ");
-			//scanf("%d", &choose_number);
-			//printf("\n\n");
-
 			if (!scanf("%d", &choose_number)) {
 				printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
 				flag = 1;
