@@ -81,6 +81,8 @@ int compare_int(void* left, void* right);
 
  void print_tree(RBtree t);
 void print_tree_helper(RBtree_node n, int step);
-int RBtree_height(struct RBtree_node_t* ptr);
+
+int RBtree_height(struct RBtree_node_t* ptr); //높이
+int count_node(struct RBtree_node_t* ptr); //개수
 
 #endif 
