@@ -432,4 +432,12 @@ int RBtree_search_node(struct RBtree_node_t* tree, int value)
 }
 
 
-
+int RBtree_height(struct RBtree_node_t* ptr) {
+	if (!ptr)
+		return 0;
+	else {
+		int left_h = RBtree_height(ptr->left);
+		int right_h = RBtree_height(ptr->right);
+		return 1 + (left_h > right_h ? left_h : right_h); // 둘 중 큰 값에 1을 더해 반환
+	}
+}
