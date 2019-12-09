@@ -55,47 +55,68 @@ int main() {
 
 			int reserve_number;
 			int temp_date_check = 0;
-			squre_box_print1();
-			printf("\n\t\t\t\t\t -> ");
-			scanf("  %c", reservation[reserve_check_number].source, 20);
+			char airport;
+			int flight_day = 0;
 
-			squre_box_print2();
-			printf("\n\t\t\t\t\t -> ");
-			scanf("%c", reservation[reserve_check_number].destination, 20);
+			for (int j = 0; j < 2; j++) {
+				if (j == 0) {
+					//비행 정보 출력 
+					source_name();  //출발지 
+					printf("\t\t\t\t\t-> ");
+					scanf("  %c", &reservation[reserve_check_number].source);  
+					airport = reservation[reserve_check_number].source;
+					printf("\n");
 
-			squre_box_print3();
-
-			int  flag0;
-			do {
-				flag0 = 0;
-				printf("\t\t\t\t\t  -> ");
-
-				if (!scanf("\t\t\t\t\t%d", &temp_date_check)) {
-					printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
-					flag0 = 1;
-					while (getchar() != '\n');
-				}
-			} while (flag0);
-			if (temp_date_check > 31) {
-				while (1) {
-					printf("\t\t\t\t\t날짜를 다시 입력하세요!\n");
-					int  flag5;
+					squre_box_print3(); //출발 날짜 box
+					source_date();
+					int  flag0;
 					do {
-						flag5 = 0;
+						flag0 = 0;
 						printf("\t\t\t\t\t  -> ");
 
 						if (!scanf("\t\t\t\t\t%d", &temp_date_check)) {
 							printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
-							flag5 = 1;
+							flag0 = 1;
 							while (getchar() != '\n');
 						}
-					} while (flag5);
-					if (temp_date_check <= 31) break;
+					} while (flag0);
+					
+					if (temp_date_check > 31) {
+						while (1) {
+							printf("\t\t\t\t\t날짜를 다시 입력하세요!\n");
+							int  flag5;
+							do {
+								flag5 = 0;
+								printf("\t\t\t\t\t  -> ");
+
+								if (!scanf("\t\t\t\t\t%d", &temp_date_check)) {
+									printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
+									flag5 = 1;
+									while (getchar() != '\n');
+								}
+							} while (flag5);
+
+							if (temp_date_check <= 31) break;
+						}
+					
+					}
+					else {
+						reservation[reserve_check_number].date = temp_date_check;
+						flight_day = reservation[reserve_check_number].date;
+						
+						PrintListTime(airport, flight_day);
+					}
+				
+				}
+
+		    else {
+				destination_name();  //도착지 
+				printf("\t\t\t\t\t-> ");			
+				scanf(" %c", &reservation[reserve_check_number].destination);  	
+				printf("\n");
+		 
 				}
 			}
-			else
-				reservation[reserve_check_number].date = temp_date_check;
-
 			//make_route(reservation[reserve_check_number].source, reservation[reserve_check_number].destination, reservation[reserve_check_number].date);
 			//printf("경로 : \n");
 			printf(" \n\t\t\t\t\t -> 예약 하시겠습니까? \n");
@@ -240,36 +261,7 @@ int main() {
 		else printf("\t\t\t\t\t조회되지 않는 번호 입니다.\n\n");
 		
 		}
-		else if (choose_number == 4) {
-			char airport;
-			int flight_day = 0;
-			for (int j = 0; j < 2; j++) {
-				if (j == 0) {
-					//비행 정보 출력 
-					source_name();  //출발지 
-					printf("\t\t\t\t\t-> ");
-					scanf("%s", &airport);
-					printf("\n");
-
-					squre_box_print3();
-
-					source_date();
-					printf("\t\t\t\t\t-> ");
-					scanf("%d", &flight_day);
-					printf("\n");
-					PrintListTime(airport, flight_day);
-				}
-				else {
-					destination_name();  //도착지 
-					printf("\t\t\t\t\t-> ");
-					scanf("%s", &airport);
-					printf("\n");
-					
-				}
-			}
-
-		}
-
+		
 		else  if (choose_number != -1 && choose_number > 4) {
 			printf("\t\t\t\t\t다시 입력해주세요 !\n\n\n ");
 		}
@@ -447,8 +439,8 @@ void random_reserve(RBtree t) {
 		}
 		cusname[namelen] = '\0';
 		strcpy(reservation[reserve_check_number].name, cusname);
-		reservation[reserve_check_number].source[0] = (char)(start + 'a');
-		reservation[reserve_check_number].destination[0] = (char)(arrive + 'a');
+		reservation[reserve_check_number].source = (char)(start + 'a');
+		reservation[reserve_check_number].destination = (char)(arrive + 'a');
 		reservation[reserve_check_number].date = sdate + 1;
 		reservation[reserve_check_number].reservation_number = reserve_check_number;
 		array_RBTree[reserve_check_number] = reserve_check_number;
