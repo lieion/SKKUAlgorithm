@@ -35,7 +35,6 @@ int main() {
 		printf("\n\t\t\t\t\t    ***  여행지를 선택 : 1 ***\n");
 		printf("\n\t\t\t\t\t     ***  예약 조회 : 2  *** \n");
 		printf("\n\t\t\t\t\t     ***  예약 취소 : 3  *** \n");
-		printf("\n\t\t\t\t\t     ***  비행기 정보 : 4  *** \n");
 		printf("\n\t\t\t\t\t     ***  종료   : -1  *** \n\n");
 		printf("\n\t\t\t\t\t***********************************\n");
 
