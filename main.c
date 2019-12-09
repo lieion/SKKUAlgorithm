@@ -11,6 +11,7 @@ void squre_box_print1();
 void squre_box_print2();
 void squre_box_print3();
 void random_reserve(RBtree t);
+
 int main() {
 	RBtree t = RBtree_create();
 	group_20_aircraft_print(); //air print
@@ -33,7 +34,7 @@ int main() {
 		do {
 			flag = 0;
 			printf("\t\t\t\t\t  -> ");
-			if (!scanf("%d", &choose_number)) {
+			if (!scanf("\t\t\t\t\t%d", &choose_number)) {
 				printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
 				flag = 1;
 				while (getchar() != '\n');
@@ -55,12 +56,35 @@ int main() {
 
 			squre_box_print3();
 
-			printf("\n\t\t\t\t\t -> ");
-			scanf("%d", &temp_date_check);
+			int  flag0;
+			do {
+				flag0 = 0;
+				printf("\t\t\t\t\t  -> ");
+
+				if (!scanf("\t\t\t\t\t%d", &temp_date_check)) {
+					printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
+					flag0 = 1;
+					while (getchar() != '\n');
+				}
+			} while (flag0);
+
+
+
 			if (temp_date_check > 31) {
 				while (1) {
-					printf("날짜를 다시 입력하세요!\n");
-					scanf("%d", &temp_date_check);
+					printf("\t\t\t\t\t날짜를 다시 입력하세요!\n");
+					int  flag5;
+					do {
+						flag5 = 0;
+						printf("\t\t\t\t\t  -> ");
+
+						if (!scanf("\t\t\t\t\t%d", &temp_date_check)) {
+							printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
+							flag5 = 1;
+							while (getchar() != '\n');
+						}
+					} while (flag5);
+					
 					if (temp_date_check <= 31) break;
 				}
 			}
@@ -69,28 +93,43 @@ int main() {
 
 			//printf("경로 : \n");
 			printf(" \n\t\t\t\t\t -> 예약 하시겠습니까? \n");
-			printf("\t\t\t\t\t 1  : 예 \n");
-			printf("\t\t\t\t\t 2  : 아니오\n");
 
-			printf("\n\t\t\t\t\t -> ");
-			scanf("%d", &reserve_number);
-			printf("\n");
+			printf("\t\t\t\t\t 1  : 예 \n");
+			printf("\t\t\t\t\t 2  : 아니오\n\n");
+
+			int  flag1;
+			do {
+				flag1 = 0;
+				printf("\t\t\t\t\t  -> ");
+
+				if (!scanf("\t\t\t\t\t%d", &reserve_number)) {
+					printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
+					flag1 = 1;
+					while (getchar() != '\n');
+				}
+			} while (flag1);
 
 			if (reserve_number == 1) {
 
 				printf("\t\t\t\t\t이름 : ");
 				scanf("%s", reservation[reserve_check_number].name, 10);
 				printf("\t\t\t\t\t┏");  //첫번째 줄
-				for (int i = 0; i < 28; i++) printf("━");
+				for (int i = 0; i < 30; i++) printf("━");
 				printf("┓\n");
 				printf("\t\t\t\t\t┃ ");//두번째 줄
 				printf(" 예약을 완료하였습니다.");
-				printf("    ┃ \n");
+				printf("      ┃ \n");
 				printf("\t\t\t\t\t┃");
 				printf("  예약 번호는  %d번  입니다.", reserve_check_number);
-				printf(" ┃ \n");
+				if (reserve_check_number >= 10 && reserve_check_number < 100)
+					printf("     ┃ \n");
+				else if (reserve_check_number >= 100)
+					printf(" ┃ \n");
+				else
+					printf(" ┃ \n");
+				
 				printf("\t\t\t\t\t┗");  //세번 째 줄
-				for (int i = 0; i < 28; i++) printf("━");
+				for (int i = 0; i < 30; i++) printf("━");
 				printf("┛\n\n");
 				reservation[reserve_check_number].reservation_number = reserve_check_number;
 
@@ -103,16 +142,28 @@ int main() {
 		else if (choose_number == 2) {
 			int check = 0;
 			printf("\t\t\t\t\t예약 번호를 입력하세요 -> ");
-			scanf("%d", &check);
-			printf("\n\n");
+			
+			int  flag2;
+			do {
+				flag2 = 0;
+
+				if (!scanf("\t\t\t\t\t%d", &check)) {
+					printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
+					flag2 = 1;
+					while (getchar() != '\n');
+				}
+			} while (flag2);
+
 			if (RBtree_search_node(t->root, check) != NULL) {
 				printf("\t\t\t\t\t┏");  //첫번째 줄
 				for (int i = 0; i < 20; i++) printf("━");
 				printf("┓\n");
 				printf("\t\t\t\t\t┃"); //두번째 줄
 				printf(" 예약 번호 : %d", reservation[check].reservation_number);
-				if (reservation[check].reservation_number >= 10)
+				if (reservation[check].reservation_number >= 10 && reservation[check].reservation_number <100)
 					printf("     ┃ \n");
+				else if (reservation[check].reservation_number >= 100)
+					printf("    ┃ \n");
 				else
 					printf("      ┃ \n");
 				printf("\t\t\t\t\t┃ ");
@@ -156,8 +207,18 @@ int main() {
 		else if (choose_number == 3) {
 			int check;
 			printf("\t\t\t\t\t예약 번호를 입력하세요 -> ");
-			scanf("%d", &check);
-			printf("\n\n");
+			
+			int  flag3;
+			do {
+				flag3 = 0;
+
+				if (!scanf("%d", &check)) {
+					printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
+					flag3 = 1;
+					while (getchar() != '\n');
+				}
+			} while (flag3);
+
 			if (RBtree_search_node(t->root, check) != NULL) {
 				RBtree_delete(t, (void*)check, compare_int);
 				printf("\t\t\t\t\t┏");  //첫번째 줄
@@ -314,3 +375,4 @@ void random_reserve(RBtree t) {
 		reserve_check_number++;
 	}
 }
+
