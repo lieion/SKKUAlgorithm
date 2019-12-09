@@ -52,11 +52,11 @@ int main() {
 			int temp_date_check = 0;
 			squre_box_print1();
 			printf("\n\t\t\t\t\t -> ");
-			scanf("  %s", reservation[reserve_check_number].source, 20);
+			scanf("  %c", reservation[reserve_check_number].source, 20);
 
 			squre_box_print2();
 			printf("\n\t\t\t\t\t -> ");
-			scanf("%s", reservation[reserve_check_number].destination, 20);
+			scanf("%c", reservation[reserve_check_number].destination, 20);
 
 			squre_box_print3();
 
@@ -172,12 +172,12 @@ int main() {
 				for (int i = 0; i < 20 - (13 + strlen(reservation[check].name)); i++) 	printf(" ");
 				printf("┃ \n");
 				printf("\t\t\t\t\t┃ ");
-				printf("출발지    : %s", reservation[check].source);
+				printf("출발지    : %c", reservation[check].source);
 
 				for (int i = 0; i < 20 - (13 + strlen(reservation[check].source)); i++) 	printf(" ");
 				printf("┃ \n");
 				printf("\t\t\t\t\t┃ ");
-				printf("도착지    : %s", reservation[check].destination);
+				printf("도착지    : %c", reservation[check].destination);
 				for (int i = 0; i < 20 - (13 + strlen(reservation[check].destination)); i++) 	printf(" ");
 				printf("┃ \n");
 				printf("\t\t\t\t\t┃ ");
