@@ -14,7 +14,7 @@ void random_reserve(RBtree t);
 void source_name(); //출발지 출력
 void destination_name();// 도착지 출력 
 void source_date(); //출발 날짜 출력
-
+void seat_print();
 
 int main() {
 	RBtree t = RBtree_create();
@@ -455,4 +455,31 @@ void random_reserve(RBtree t) {
 		RBtree_insert(t, (void*)array_RBTree[reserve_check_number], compare_int);
 		reserve_check_number++;
 	}
+}
+
+void seat_print() {
+	printf("\t\t\t\t\t\t    좌석 정보\n");
+	printf("\t\t\t\t\t   ┏");  //첫번째 줄
+	for (int i = 0; i < 25; i++) printf("━");
+	printf("┓\n");
+	printf("\t\t\t\t\t   ┃   0 1   2 3 4   5 6     ┃\n");
+	for (int i = 0; i < 10; i++) {
+		printf("\t\t\t\t\t   ");
+		printf("┃   ");
+		for (int j = 0; j < 7; j++) {
+			if (j % 10 == 2 || j % 10 == 5)
+				printf("┃ ");
+			int i = rand() % 3;
+			if (i == 0 || i == 1)
+				printf("o ");
+			else
+				printf("x ");
+		}
+		printf(" %c", 'J' - i);
+		printf("  ┃");
+		printf("\n");
+	}
+	printf("\t\t\t\t\t   ┗");  //마지막 줄
+	for (int i = 0; i < 25; i++) printf("━");
+	printf("┛\n");
 }
