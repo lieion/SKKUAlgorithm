@@ -11,6 +11,11 @@ void squre_box_print1();
 void squre_box_print2();
 void squre_box_print3();
 void random_reserve(RBtree t);
+void source_name(); //출발지 출력
+void destination_name();// 도착지 출력 
+void source_date(); //출발 날짜 출력
+
+
 int main() {
 	RBtree t = RBtree_create();
 	group_20_aircraft_print(); //air print
@@ -238,35 +243,30 @@ int main() {
 		else if (choose_number == 4) {
 			char airport;
 			int flight_day = 0;
-			printf("\t\t\t\t\t┏");  //첫번째 줄
-			for (int i = 0; i < 44; i++) printf("━");
-			printf("┓\n");
-			printf("\t\t\t\t\t┃ ");
-			printf("비행 정보를 보고 싶은 도시를 입력해주세요");
-			printf("  ┃ \n");
-			printf("\t\t\t\t\t┃ ");
-			printf("'a'부터 'z'사이에서 선택해 주세요!");
-			printf("         ┃ \n");
-			printf("\t\t\t\t\t┗");  //세번 째 줄
-			for (int i = 0; i < 44; i++) printf("━");
-			printf("┛\n\n");
-			printf("\t\t\t\t\t-> ");
-			scanf("%s", &airport);
-			printf("\n");
-			squre_box_print3();
-			printf("\t\t\t\t\t┏");  //첫번째 줄
-			for (int i = 0; i < 44; i++) printf("━");
-			printf("┓\n");
-			printf("\t\t\t\t\t┃ ");
-			printf("비행 정보를 보고 싶은 날짜를 입력해주세요");
-			printf("  ┃ \n");
-			printf("\t\t\t\t\t┗");  //세번 째 줄
-			for (int i = 0; i < 44; i++) printf("━");
-			printf("┛\n\n");
-			printf("\t\t\t\t\t-> ");
-			scanf("%d", &flight_day);
-			printf("\n");
-			PrintListTime(airport, flight_day);
+			for (int j = 0; j < 2; j++) {
+				if (j == 0) {
+					//비행 정보 출력 
+					source_name();  //출발지 
+					printf("\t\t\t\t\t-> ");
+					scanf("%s", &airport);
+					printf("\n");
+
+					squre_box_print3();
+
+					source_date();
+					printf("\t\t\t\t\t-> ");
+					scanf("%d", &flight_day);
+					printf("\n");
+					PrintListTime(airport, flight_day);
+				}
+				else {
+					destination_name();  //도착지 
+					printf("\t\t\t\t\t-> ");
+					scanf("%s", &airport);
+					printf("\n");
+					
+				}
+			}
 
 		}
 
@@ -388,6 +388,48 @@ void squre_box_print3() {
 		}
 	}
 	printf("\n\t\t\t\t\t======================================================\n");
+}
+
+void source_date() {
+	printf("\t\t\t\t\t┏");  //첫번째 줄
+	for (int i = 0; i < 30; i++) printf("━");
+	printf("┓\n");
+	printf("\t\t\t\t\t┃ ");
+	printf("출발 날짜를 입력해주세요!");
+	printf("    ┃ \n");
+	printf("\t\t\t\t\t┗");  //세번 째 줄
+	for (int i = 0; i < 30; i++) printf("━");
+	printf("┛\n\n");
+}
+
+void source_name() {
+	printf("\t\t\t\t\t┏");  //첫번째 줄
+	for (int i = 0; i < 44; i++) printf("━");
+	printf("┓\n");
+	printf("\t\t\t\t\t┃ ");
+	printf("출발 할  도시를 입력해주세요!");
+	printf("              ┃ \n");
+	printf("\t\t\t\t\t┃ ");
+	printf("'a'부터 'z'사이에서 선택해 주세요!");
+	printf("         ┃ \n");
+	printf("\t\t\t\t\t┗");  //세번 째 줄
+	for (int i = 0; i < 44; i++) printf("━");
+	printf("┛\n\n");
+}
+
+void destination_name() {
+	printf("\t\t\t\t\t┏");  //첫번째 줄
+	for (int i = 0; i < 44; i++) printf("━");
+	printf("┓\n");
+	printf("\t\t\t\t\t┃ ");
+	printf("도착 할  도시를 입력해주세요!");
+	printf("              ┃ \n");
+	printf("\t\t\t\t\t┃ ");
+	printf("'a'부터 'z'사이에서 선택해 주세요!");
+	printf("         ┃ \n");
+	printf("\t\t\t\t\t┗");  //세번 째 줄
+	for (int i = 0; i < 44; i++) printf("━");
+	printf("┛\n\n");
 }
 
 void random_reserve(RBtree t) {
