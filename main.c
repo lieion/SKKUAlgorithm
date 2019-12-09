@@ -44,7 +44,7 @@ int main() {
 			flag = 0;
 			printf("\t\t\t\t\t  -> ");
 
-			if (!scanf("%d", &choose_number)) {
+			if (!scanf("\t\t\t\t\t %d", &choose_number)) {
 				printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
 				flag = 1;
 				while (getchar() != '\n');
