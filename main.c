@@ -28,10 +28,19 @@ int main() {
 		printf("\n\t\t\t\t\t     ***  종료   : -1  *** \n\n");
 		printf("\n\t\t\t\t\t***********************************\n");
 
+		int  flag ;
+		do {
+			flag = 0;
 		printf("\t\t\t\t\t  -> ");
-		scanf("%d", &choose_number);
-		printf("\n\n");
-		//	while (1) {
+		//scanf("%d", &choose_number);
+		//printf("\n\n");
+		
+		if (!scanf("%d", &choose_number)) {
+				printf("숫자가 아닙니다. \n\n");
+				flag = 1;
+				while ( getchar() != '\n' );
+			}
+		} while (flag);
 
 
 		if (choose_number == 1) {
@@ -174,12 +183,10 @@ int main() {
 			printf("\t\t\t\t\t조회를 종료합니다!\n");
 			break;
 		}
-		///	}	
-			//if (choose_number == -1) break;
+		
 	}
 
 	return 0;
-
 }
 
 void group_20_aircraft_print() {
