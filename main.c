@@ -244,6 +244,9 @@ int main() {
 			printf("\t\t\t\t\t┃ ");
 			printf("비행 정보를 보고 싶은 도시를 입력해주세요");
 			printf("  ┃ \n");
+			printf("\t\t\t\t\t┃ ");
+			printf("'a'부터 'z'사이에서 선택해 주세요!");
+			printf("         ┃ \n");
 			printf("\t\t\t\t\t┗");  //세번 째 줄
 			for (int i = 0; i < 44; i++) printf("━");
 			printf("┛\n\n");
