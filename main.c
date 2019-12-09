@@ -7,9 +7,8 @@
 int reserve_check_number; //RBtree 배열에 저장할 값
 
 void group_20_aircraft_print();
-void squre_box_print1();
-void squre_box_print2();
-void squre_box_print3();
+
+void squre_box_print();
 void random_reserve(RBtree t);
 void source_name(); //출발지 출력
 void destination_name();// 도착지 출력 
@@ -66,7 +65,7 @@ int main() {
 					airport = reservation[reserve_check_number].source;
 					printf("\n");
 
-					squre_box_print3(); //출발 날짜 box
+					squre_box_print(); //출발 날짜 box
 					source_date();
 					int  flag0;
 					do {
@@ -319,29 +318,8 @@ void group_20_aircraft_print() {
 	printf("   (  _ )_                      (_, _(  ,_)_)\n");
 	printf(" (_  _(_ ,)\n");
 }
-void squre_box_print1() {
-	printf("\t\t\t\t\t┏");  //첫번째 줄
-	for (int i = 0; i < 10; i++) printf("━");
-	printf("┓\n");
-	printf("\t\t\t\t\t┃"); //두번째 줄
-	printf("  출발지  ");
-	printf("┃ \n");
-	printf("\t\t\t\t\t┗");  //세번 째 줄
-	for (int i = 0; i < 10; i++) printf("━");
-	printf("┛\n");
-}
-void squre_box_print2() {
-	printf("\t\t\t\t\t┏");  //첫번째 줄
-	for (int i = 0; i < 10; i++) printf("━");
-	printf("┓\n");
-	printf("\t\t\t\t\t┃"); //두번째 줄
-	printf("  도착지  ");
-	printf("┃ \n");
-	printf("\t\t\t\t\t┗");  //세번 째 줄
-	for (int i = 0; i < 10; i++) printf("━");
-	printf("┛\n");
-}
-void squre_box_print3() {
+
+void squre_box_print() {
 	printf("\t\t\t\t\t┏");  //첫번째 줄
 	for (int i = 0; i < 12; i++) printf("━");
 	printf("┓\n");
