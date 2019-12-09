@@ -12,15 +12,15 @@
 struct customer_info {
 	int reservation_number;
 	char name[10];
-	char source[20];
-	char destination[20];
+	char source;
+	char destination;
 	int date;
 };
 
-int array_RBTree[501];  //RBTree
-int temp1[501];
+int array_RBTree[601];  //RBTree
+int temp1[601];
 
-struct customer_info reservation[500];
+struct customer_info reservation[600];
 
 
 enum RBtree_node_color { RED, BLACK };
