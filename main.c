@@ -4,7 +4,7 @@
 #include "RBtree.h"
 #include "ADJlist.h";
 
-int reserve_check_number; //RBtree ¹è¿­¿¡ ÀúÀåÇÒ °ª
+int reserve_check_number; //RBtree ë°°ì—´ì— ì €ì¥í•  ê°’
 
 void group_20_aircraft_print();
 void squre_box_print1();
@@ -20,26 +20,27 @@ int main() {
 	int choose_number;
 	printf("***********************************************************************************************************************\n");
 
+	printf("\t\t\t\t\tRed-Black tree height : %d \n", RBtree_height(t->root));
+	printf("\t\t\t\t\tRed-Black tree  count node : %d\n ", count_node(t->root));
+	
 	while (1) {
 
 		printf("\t\t\t\t\t***********************************\n");
-		printf("\t\t\t\t\t    ÇØ´çÇÏ´Â ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä!\n");
-		printf("\n\t\t\t\t\t    ***  ¿©ÇàÁö¸¦ ¼±ÅÃ : 1 ***\n");
-		printf("\n\t\t\t\t\t     ***  ¿¹¾à Á¶È¸ : 2  *** \n");
-		printf("\n\t\t\t\t\t     ***  ¿¹¾à Ãë¼Ò : 3  *** \n");
-		printf("\n\t\t\t\t\t     ***  ºñÇà±â Á¤º¸ : 4  *** \n");
-		printf("\n\t\t\t\t\t     ***  Á¾·á   : -1  *** \n\n");
+		printf("\t\t\t\t\t    í•´ë‹¹í•˜ëŠ” ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”!\n");
+		printf("\n\t\t\t\t\t    ***  ì—¬í–‰ì§€ë¥¼ ì„ íƒ : 1 ***\n");
+		printf("\n\t\t\t\t\t     ***  ì˜ˆì•½ ì¡°íšŒ : 2  *** \n");
+		printf("\n\t\t\t\t\t     ***  ì˜ˆì•½ ì·¨ì†Œ : 3  *** \n");
+		printf("\n\t\t\t\t\t     ***  ë¹„í–‰ê¸° ì •ë³´ : 4  *** \n");
+		printf("\n\t\t\t\t\t     ***  ì¢…ë£Œ   : -1  *** \n\n");
 		printf("\n\t\t\t\t\t***********************************\n");
 
 		int  flag;
 		do {
 			flag = 0;
 			printf("\t\t\t\t\t  -> ");
-			//scanf("%d", &choose_number);
-			//printf("\n\n");
 
 			if (!scanf("%d", &choose_number)) {
-				printf("\t\t\t\t\t¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù. \n\n");
+				printf("\t\t\t\t\tìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤. \n\n");
 				flag = 1;
 				while (getchar() != '\n');
 			}
@@ -65,21 +66,21 @@ int main() {
 				printf("\t\t\t\t\t  -> ");
 
 				if (!scanf("\t\t\t\t\t%d", &temp_date_check)) {
-					printf("\t\t\t\t\t¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù. \n\n");
+					printf("\t\t\t\t\tìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤. \n\n");
 					flag0 = 1;
 					while (getchar() != '\n');
 				}
 			} while (flag0);
 			if (temp_date_check > 31) {
 				while (1) {
-					printf("\t\t\t\t\t³¯Â¥¸¦ ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä!\n");
+					printf("\t\t\t\t\të‚ ì§œë¥¼ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”!\n");
 					int  flag5;
 					do {
 						flag5 = 0;
 						printf("\t\t\t\t\t  -> ");
 
 						if (!scanf("\t\t\t\t\t%d", &temp_date_check)) {
-							printf("\t\t\t\t\t¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù. \n\n");
+							printf("\t\t\t\t\tìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤. \n\n");
 							flag5 = 1;
 							while (getchar() != '\n');
 						}
@@ -91,11 +92,11 @@ int main() {
 				reservation[reserve_check_number].date = temp_date_check;
 
 			//make_route(reservation[reserve_check_number].source, reservation[reserve_check_number].destination, reservation[reserve_check_number].date);
-			//printf("°æ·Î : \n");
-			printf(" \n\t\t\t\t\t -> ¿¹¾à ÇÏ½Ã°Ú½À´Ï±î? \n");
+			//printf("ê²½ë¡œ : \n");
+			printf(" \n\t\t\t\t\t -> ì˜ˆì•½ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? \n");
 
-			printf("\t\t\t\t\t 1  : ¿¹ \n");
-			printf("\t\t\t\t\t 2  : ¾Æ´Ï¿À\n\n");
+			printf("\t\t\t\t\t 1  : ì˜ˆ \n");
+			printf("\t\t\t\t\t 2  : ì•„ë‹ˆì˜¤\n\n");
 
 			int  flag1;
 			do {
@@ -103,7 +104,7 @@ int main() {
 				printf("\t\t\t\t\t  -> ");
 
 				if (!scanf("\t\t\t\t\t%d", &reserve_number)) {
-					printf("\t\t\t\t\t¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù. \n\n");
+					printf("\t\t\t\t\tìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤. \n\n");
 					flag1 = 1;
 					while (getchar() != '\n');
 				}
@@ -111,26 +112,26 @@ int main() {
 
 			if (reserve_number == 1) {
 
-				printf("\t\t\t\t\tÀÌ¸§ : ");
+				printf("\t\t\t\t\tì´ë¦„ : ");
 				scanf("%s", reservation[reserve_check_number].name, 10);
-				printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-				for (int i = 0; i < 30; i++) printf("¦¬");
-				printf("¦¯\n");
-				printf("\t\t\t\t\t¦­ ");//µÎ¹øÂ° ÁÙ
-				printf(" ¿¹¾àÀ» ¿Ï·áÇÏ¿´½À´Ï´Ù.");
-				printf("      ¦­ \n");
-				printf("\t\t\t\t\t¦­");
-				printf("  ¿¹¾à ¹øÈ£´Â  %d¹ø  ÀÔ´Ï´Ù.", reserve_check_number);
+				printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+				for (int i = 0; i < 30; i++) printf("â”");
+				printf("â”“\n");
+				printf("\t\t\t\t\tâ”ƒ ");//ë‘ë²ˆì§¸ ì¤„
+				printf(" ì˜ˆì•½ì„ ì™„ë£Œí•˜ì˜€ìŠµë‹ˆë‹¤.");
+				printf("      â”ƒ \n");
+				printf("\t\t\t\t\tâ”ƒ");
+				printf("  ì˜ˆì•½ ë²ˆí˜¸ëŠ”  %dë²ˆ  ì…ë‹ˆë‹¤.", reserve_check_number);
 				if (reserve_check_number >= 10 && reserve_check_number < 100)
-					printf("     ¦­ \n");
+					printf("     â”ƒ \n");
 				else if (reserve_check_number >= 100)
-					printf(" ¦­ \n");
+					printf(" â”ƒ \n");
 				else
-					printf(" ¦­ \n");
+					printf(" â”ƒ \n");
 
-				printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-				for (int i = 0; i < 30; i++) printf("¦¬");
-				printf("¦°\n\n");
+				printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+				for (int i = 0; i < 30; i++) printf("â”");
+				printf("â”›\n\n");
 				reservation[reserve_check_number].reservation_number = reserve_check_number;
 
 				array_RBTree[reserve_check_number] = reserve_check_number;
@@ -141,79 +142,79 @@ int main() {
 		}
 		else if (choose_number == 2) {
 			int check = 0;
-			printf("\t\t\t\t\t¿¹¾à ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä -> ");
+			printf("\t\t\t\t\tì˜ˆì•½ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” -> ");
 
 			int  flag2;
 			do {
 				flag2 = 0;
 
 				if (!scanf("\t\t\t\t\t%d", &check)) {
-					printf("\t\t\t\t\t¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù. \n\n");
+					printf("\t\t\t\t\tìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤. \n\n");
 					flag2 = 1;
 					while (getchar() != '\n');
 				}
 			} while (flag2);
 
 			if (RBtree_search_node(t->root, check) != NULL) {
-				printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-				for (int i = 0; i < 20; i++) printf("¦¬");
-				printf("¦¯\n");
-				printf("\t\t\t\t\t¦­"); //µÎ¹øÂ° ÁÙ
-				printf(" ¿¹¾à ¹øÈ£ : %d", reservation[check].reservation_number);
+				printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+				for (int i = 0; i < 20; i++) printf("â”");
+				printf("â”“\n");
+				printf("\t\t\t\t\tâ”ƒ"); //ë‘ë²ˆì§¸ ì¤„
+				printf(" ì˜ˆì•½ ë²ˆí˜¸ : %d", reservation[check].reservation_number);
 				if (reservation[check].reservation_number >= 10 && reservation[check].reservation_number < 100)
-					printf("     ¦­ \n");
+					printf("     â”ƒ \n");
 				else if (reservation[check].reservation_number >= 100)
-					printf("    ¦­ \n");
+					printf("    â”ƒ \n");
 				else
-					printf("      ¦­ \n");
-				printf("\t\t\t\t\t¦­ ");
-				printf("°í°´ ÀÌ¸§ : %s", reservation[check].name);
+					printf("      â”ƒ \n");
+				printf("\t\t\t\t\tâ”ƒ ");
+				printf("ê³ ê° ì´ë¦„ : %s", reservation[check].name);
 				for (int i = 0; i < 20 - (13 + strlen(reservation[check].name)); i++) 	printf(" ");
-				printf("¦­ \n");
-				printf("\t\t\t\t\t¦­ ");
-				printf("Ãâ¹ßÁö    : %s", reservation[check].source);
+				printf("â”ƒ \n");
+				printf("\t\t\t\t\tâ”ƒ ");
+				printf("ì¶œë°œì§€    : %s", reservation[check].source);
 
 				for (int i = 0; i < 20 - (13 + strlen(reservation[check].source)); i++) 	printf(" ");
-				printf("¦­ \n");
-				printf("\t\t\t\t\t¦­ ");
-				printf("µµÂøÁö    : %s", reservation[check].destination);
+				printf("â”ƒ \n");
+				printf("\t\t\t\t\tâ”ƒ ");
+				printf("ë„ì°©ì§€    : %s", reservation[check].destination);
 				for (int i = 0; i < 20 - (13 + strlen(reservation[check].destination)); i++) 	printf(" ");
-				printf("¦­ \n");
-				printf("\t\t\t\t\t¦­ ");
-				printf("Ãâ¹ß³¯Â¥  : %d", reservation[check].date);
+				printf("â”ƒ \n");
+				printf("\t\t\t\t\tâ”ƒ ");
+				printf("ì¶œë°œë‚ ì§œ  : %d", reservation[check].date);
 				if (reservation[check].date >= 10)
-					printf("     ¦­ \n");
+					printf("     â”ƒ \n");
 				else
-					printf("      ¦­ \n");
-				printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-				for (int i = 0; i < 20; i++) printf("¦¬");
-				printf("¦°\n\n");
+					printf("      â”ƒ \n");
+				printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+				for (int i = 0; i < 20; i++) printf("â”");
+				printf("â”›\n\n");
 
 			}
 
 			else if (RBtree_search_node(t->root, check) == NULL) {
-				printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-				for (int i = 0; i < 28; i++) printf("¦¬");
-				printf("¦¯\n");
-				printf("\t\t\t\t\t¦­ ");
-				printf("Á¶È¸µÇÁö ¾Ê´Â ¹øÈ£ ÀÔ´Ï´Ù!");
-				printf(" ¦­ \n");
-				printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-				for (int i = 0; i < 28; i++) printf("¦¬");
-				printf("¦°\n\n");
+				printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+				for (int i = 0; i < 28; i++) printf("â”");
+				printf("â”“\n");
+				printf("\t\t\t\t\tâ”ƒ ");
+				printf("ì¡°íšŒë˜ì§€ ì•ŠëŠ” ë²ˆí˜¸ ì…ë‹ˆë‹¤!");
+				printf(" â”ƒ \n");
+				printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+				for (int i = 0; i < 28; i++) printf("â”");
+				printf("â”›\n\n");
 			}
 			//	break;
 		}
 		else if (choose_number == 3) {
 		int check;
-		printf("\t\t\t\t\t¿¹¾à ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä -> ");
+		printf("\t\t\t\t\tì˜ˆì•½ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” -> ");
 
 		int  flag3;
 		do {
 			flag3 = 0;
 
 			if (!scanf("%d", &check)) {
-				printf("\t\t\t\t\t¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù. \n\n");
+				printf("\t\t\t\t\tìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤. \n\n");
 				flag3 = 1;
 				while (getchar() != '\n');
 			}
@@ -221,44 +222,44 @@ int main() {
 
 		if (RBtree_search_node(t->root, check) != NULL) {
 			RBtree_delete(t, (void*)check, compare_int);
-			printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-			for (int i = 0; i < 25; i++) printf("¦¬");
-			printf("¦¯\n");
-			printf("\t\t\t\t\t¦­ ");
-			printf("¿¹¾àÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù!");
-			printf("  ¦­ \n");
-			printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-			for (int i = 0; i < 25; i++) printf("¦¬");
-			printf("¦°\n\n");
+			printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+			for (int i = 0; i < 25; i++) printf("â”");
+			printf("â”“\n");
+			printf("\t\t\t\t\tâ”ƒ ");
+			printf("ì˜ˆì•½ì´ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤!");
+			printf("  â”ƒ \n");
+			printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+			for (int i = 0; i < 25; i++) printf("â”");
+			printf("â”›\n\n");
 		}
-		else printf("\t\t\t\t\tÁ¶È¸µÇÁö ¾Ê´Â ¹øÈ£ ÀÔ´Ï´Ù.\n\n");
-		//break;
+		else printf("\t\t\t\t\tì¡°íšŒë˜ì§€ ì•ŠëŠ” ë²ˆí˜¸ ì…ë‹ˆë‹¤.\n\n");
+		
 		}
 		else if (choose_number == 4) {
 			char airport;
 			int flight_day = 0;
-			printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-			for (int i = 0; i < 44; i++) printf("¦¬");
-			printf("¦¯\n");
-			printf("\t\t\t\t\t¦­ ");
-			printf("ºñÇà Á¤º¸¸¦ º¸°í ½ÍÀº µµ½Ã¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
-			printf("  ¦­ \n");
-			printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-			for (int i = 0; i < 44; i++) printf("¦¬");
-			printf("¦°\n\n");
+			printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+			for (int i = 0; i < 44; i++) printf("â”");
+			printf("â”“\n");
+			printf("\t\t\t\t\tâ”ƒ ");
+			printf("ë¹„í–‰ ì •ë³´ë¥¼ ë³´ê³  ì‹¶ì€ ë„ì‹œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
+			printf("  â”ƒ \n");
+			printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+			for (int i = 0; i < 44; i++) printf("â”");
+			printf("â”›\n\n");
 			printf("\t\t\t\t\t-> ");
 			scanf("%s", &airport);
 			printf("\n");
 			squre_box_print3();
-			printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-			for (int i = 0; i < 44; i++) printf("¦¬");
-			printf("¦¯\n");
-			printf("\t\t\t\t\t¦­ ");
-			printf("ºñÇà Á¤º¸¸¦ º¸°í ½ÍÀº ³¯Â¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
-			printf("  ¦­ \n");
-			printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-			for (int i = 0; i < 44; i++) printf("¦¬");
-			printf("¦°\n\n");
+			printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+			for (int i = 0; i < 44; i++) printf("â”");
+			printf("â”“\n");
+			printf("\t\t\t\t\tâ”ƒ ");
+			printf("ë¹„í–‰ ì •ë³´ë¥¼ ë³´ê³  ì‹¶ì€ ë‚ ì§œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
+			printf("  â”ƒ \n");
+			printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+			for (int i = 0; i < 44; i++) printf("â”");
+			printf("â”›\n\n");
 			printf("\t\t\t\t\t-> ");
 			scanf("%d", &flight_day);
 			printf("\n");
@@ -267,14 +268,15 @@ int main() {
 		}
 
 		else  if (choose_number != -1 && choose_number > 4) {
-			printf("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä !\n\n\n ");
+			printf("\t\t\t\t\të‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš” !\n\n\n ");
 		}
 		if (choose_number == -1) {
-			printf("Á¶È¸¸¦ Á¾·áÇÕ´Ï´Ù!\n");
+			printf("\t\t\t\t\tì¡°íšŒë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤!\n");
+			printf("\t\t\t\t\tRed-Black tree height : %d \n", RBtree_height(t->root));
+			printf("\t\t\t\t\tRed-Black tree  count node : %d \n\n", count_node(t->root));
 			exit(1);
 		}
-		///	}	
-			//if (choose_number == -1) break;
+		
 	}
 
 	return 0;
@@ -324,62 +326,62 @@ void group_20_aircraft_print() {
 	printf(" (_  _(_ ,)\n");
 }
 void squre_box_print1() {
-	printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-	for (int i = 0; i < 10; i++) printf("¦¬");
-	printf("¦¯\n");
-	printf("\t\t\t\t\t¦­"); //µÎ¹øÂ° ÁÙ
-	printf("  Ãâ¹ßÁö  ");
-	printf("¦­ \n");
-	printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-	for (int i = 0; i < 10; i++) printf("¦¬");
-	printf("¦°\n");
+	printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+	for (int i = 0; i < 10; i++) printf("â”");
+	printf("â”“\n");
+	printf("\t\t\t\t\tâ”ƒ"); //ë‘ë²ˆì§¸ ì¤„
+	printf("  ì¶œë°œì§€  ");
+	printf("â”ƒ \n");
+	printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+	for (int i = 0; i < 10; i++) printf("â”");
+	printf("â”›\n");
 }
 void squre_box_print2() {
-	printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-	for (int i = 0; i < 10; i++) printf("¦¬");
-	printf("¦¯\n");
-	printf("\t\t\t\t\t¦­"); //µÎ¹øÂ° ÁÙ
-	printf("  µµÂøÁö  ");
-	printf("¦­ \n");
-	printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-	for (int i = 0; i < 10; i++) printf("¦¬");
-	printf("¦°\n");
+	printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+	for (int i = 0; i < 10; i++) printf("â”");
+	printf("â”“\n");
+	printf("\t\t\t\t\tâ”ƒ"); //ë‘ë²ˆì§¸ ì¤„
+	printf("  ë„ì°©ì§€  ");
+	printf("â”ƒ \n");
+	printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+	for (int i = 0; i < 10; i++) printf("â”");
+	printf("â”›\n");
 }
 void squre_box_print3() {
-	printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-	for (int i = 0; i < 12; i++) printf("¦¬");
-	printf("¦¯\n");
-	printf("\t\t\t\t\t¦­"); //µÎ¹øÂ° ÁÙ
-	printf("  Ãâ¹ß ³¯Â¥ ");
-	printf("¦­ \n");
-	printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-	for (int i = 0; i < 12; i++) printf("¦¬");
-	printf("¦°\n");
+	printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+	for (int i = 0; i < 12; i++) printf("â”");
+	printf("â”“\n");
+	printf("\t\t\t\t\tâ”ƒ"); //ë‘ë²ˆì§¸ ì¤„
+	printf("  ì¶œë°œ ë‚ ì§œ ");
+	printf("â”ƒ \n");
+	printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+	for (int i = 0; i < 12; i++) printf("â”");
+	printf("â”›\n");
 
 	int i = 0;
 	int start = 0;
-	const char* wname[7] = { "ÀÏ","¿ù","È­","¼ö","¸ñ","±İ","Åä" };
+	const char* wname[7] = { "ì¼","ì›”","í™”","ìˆ˜","ëª©","ê¸ˆ","í† " };
 
-	printf("\t\t\t\t\t                   << 2019³â 12¿ù>>\n");//´Ş Ãâ·Â
+	printf("\t\t\t\t\t                   << 2019ë…„ 12ì›”>>\n");//ë‹¬ ì¶œë ¥
 	printf("\t\t\t\t\t======================================================\n");
 	printf("\t\t\t\t\t");
-	for (i = 0; i < 7; i++)//¿äÀÏ Ãâ·Â
+	for (i = 0; i < 7; i++)//ìš”ì¼ ì¶œë ¥
 	{
-		printf("%7s", wname[i]);//ÆøÀ» 7·Î ¼³Á¤
+		printf("%7s", wname[i]);//í­ì„ 7ë¡œ ì„¤ì •
 	}
 	printf("\n\t\t\t\t\t");
-	for (i = 0; i < start; i++)//Ã¹ ÁÖ ½ÃÀÛÀÏ±îÁö °ø¹é Ãâ·Â
+	for (i = 0; i < start; i++)//ì²« ì£¼ ì‹œì‘ì¼ê¹Œì§€ ê³µë°± ì¶œë ¥
 	{
-		printf("%7s", " ");//ÆøÀ» 7·Î ¼³Á¤
+		printf("%7s", " ");//í­ì„ 7ë¡œ ì„¤ì •
 	}
-	for (i = 0; i < 31; i++)//ÀÏ Ãâ·Â
+	for (i = 0; i < 31; i++)//ì¼ ì¶œë ¥
 	{
-		printf("%7d", i + 1);//ÆøÀ» 7·Î ¼³Á¤
+		printf("%7d", i + 1);//í­ì„ 7ë¡œ ì„¤ì •
 		start++;
-		if (start == 7)//¿äÀÏÀÌ 7ÀÌ¸é
+		if (start == 7)//ìš”ì¼ì´ 7ì´ë©´
 		{
-			start = 0;//0À¸·Î º¯°æ
-			printf("\n\t\t\t\t\t");//°³Çà Ãâ·Â
+			start = 0;//0ìœ¼ë¡œ ë³€ê²½
+			printf("\n\t\t\t\t\t");//ê°œí–‰ ì¶œë ¥
 		}
 	}
 	printf("\n\t\t\t\t\t======================================================\n");
