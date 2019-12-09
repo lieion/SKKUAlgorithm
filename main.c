@@ -196,15 +196,15 @@ int main() {
 				printf("고객 이름 : %s", reservation[check].name);
 				for (int i = 0; i < 20 - (13 + strlen(reservation[check].name)); i++) 	printf(" ");
 				printf("┃ \n");
+				
 				printf("\t\t\t\t\t┃ ");
 				printf("출발지    : %c", reservation[check].source);
+				printf("	     ┃ \n");
 
-				for (int i = 0; i < 20 - (13 + strlen(reservation[check].source)); i++) 	printf(" ");
-				printf("┃ \n");
 				printf("\t\t\t\t\t┃ ");
 				printf("도착지    : %c", reservation[check].destination);
-				for (int i = 0; i < 20 - (13 + strlen(reservation[check].destination)); i++) 	printf(" ");
-				printf("┃ \n");
+				printf("	     ┃ \n");
+				
 				printf("\t\t\t\t\t┃ ");
 				printf("출발날짜  : %d", reservation[check].date);
 				if (reservation[check].date >= 10)
