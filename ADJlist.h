@@ -1,5 +1,5 @@
-#ifndef ADJtree_H
-#define ADJtree_H
+#ifndef ADJlist_H
+#define ADJlist_H
 
 #include <stdio.h>
 #include <stdlib.h>

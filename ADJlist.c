@@ -102,19 +102,19 @@ void PrintListTime(char city_name, int date_num) {
 	else k = 23;
 	NODE* cur;
 	int dec;
-	printf("┏");  //첫번째 줄
+	printf("\t\t\t\t\t┏");  //첫번째 줄
 	for (int i = 0; i < k; i++) printf("━");
 	printf("┓\n");
-	printf("┃ ");
+	printf("\t\t\t\t\t┃ ");
 	printf("<%c공항 %d일의 시간표>", city_name, date_num);
 	printf("  ┃ \n");
-	printf("┗");  //세번 째 줄
+	printf("\t\t\t\t\t┗");  //세번 째 줄
 	for (int i = 0; i < k; i++) printf("━");
 	printf("┛\n\n");
 	
 	cur = Adjlist[i].head->next;
 	while (!cur == NULL) {
-		printf("> %c -> %c %d시\n", city_name, cur->data, cur->tm[date_num]);
+		printf("\t\t\t\t\t> %c -> %c %d시\n", city_name, cur->data, cur->tm[date_num]);
 		cur = cur->next;
 	}
 	printf("\n");

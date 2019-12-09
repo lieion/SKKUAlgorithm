@@ -438,6 +438,6 @@ int RBtree_height(struct RBtree_node_t* ptr) {
 	else {
 		int left_h = RBtree_height(ptr->left);
 		int right_h = RBtree_height(ptr->right);
-		return 1 + (left_h > right_h ? left_h : right_h); // ë‘˜ ì¤‘ í° ê°’ì— 1ì„ ë”í•´ ë°˜í™˜
+		return 1 + (left_h > right_h ? left_h : right_h); // µÑ Áß Å« °ª¿¡ 1À» ´õÇØ ¹ÝÈ¯
 	}
 }
