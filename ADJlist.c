@@ -82,14 +82,13 @@ void init_Node() {
 }
 void PrintList(char start) {
 	printf("\t\t\t\t\t갈 수 있는 여행지: ");
+	memset(visited, 0, sizeof(visited));
+	checkDestination(start - 'a');
 	for (int i = 0; i < 26; i++) {
 		if (i == start - 'a')
 			continue;
-		memset(visited, 0, sizeof(visited));
-		int result = checkDestination(start - 'a', i);
-		if (result == 1) {
+		if (visited[i] == 1)
 			printf("%c ", i + 'a');
-		}
 	}
 	printf("\n\n");
 }
@@ -160,23 +159,16 @@ int shortest_path(int start, int arrive, int date) {
 
 }
 
-int checkDestination(int start, int dest) {
+void checkDestination(int start) {
 	visited[start] = 1;
 	NODE* temp = Adjlist[start].head->next;
 	
-	if (temp != NULL) {
-		if ((temp->data) == dest + 'a') {
-			return 1;
-		}
-	}
-
 	while (temp != NULL) {
 		if (visited[temp->data - 'a'] == 0) {
-			return checkDestination(temp->data - 'a', dest);
+			checkDestination(temp->data - 'a');
 		}
 		temp = temp->next;
 	}
-	return 0;
 }
 
 void make_ADJlist() {
