@@ -30,19 +30,18 @@ typedef struct link
 
 City city[26];
 
-
-
+int visited[26];
 
 LinkedList Adjlist[50];
 
 int pathCheck(char random_path[100][3], int num);
 void random_City_Position(City* city);
-void insertNode( char start, char dest, int times);
+void insertNode(char start, char dest, int times);
 void init_Node();
-void PrintList(int i);
+void PrintList(char start);
 void PrintListTime(char city_name, int date_num);
 void make_ADJlist();
-
+int checkDestination(int start, int dest);
 
 
 
