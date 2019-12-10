@@ -439,15 +439,15 @@ int RBtree_height(struct RBtree_node_t* ptr) {
 	else {
 		int left_h = RBtree_height(ptr->left);
 		int right_h = RBtree_height(ptr->right);
-		return 1 + (left_h > right_h ? left_h : right_h); 
+		return 1 + (left_h > right_h ? left_h : right_h);
 	}
 }
 
 
 int count_node(struct RBtree_node_t* ptr) {
 	int count_node_number = 0;
-	
+
 	if (ptr == NULL) return 0;
-	 count_node_number = 1+ count_node(ptr->left)+ count_node(ptr->right);
-	 return count_node_number;
+	count_node_number = 1 + count_node(ptr->left) + count_node(ptr->right);
+	return count_node_number;
 }
