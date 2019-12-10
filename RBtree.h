@@ -41,12 +41,12 @@ typedef struct RBtree_t {
 typedef int (*compare_func)(void* left, void* right);
 
 RBtree RBtree_create();
+
 void* RBtree_lookup(RBtree t, void* key, compare_func compare);
 void RBtree_insert(RBtree t, void* key, compare_func compare);
 void RBtree_delete(RBtree t, void* key, compare_func compare);
 typedef RBtree_node node;
 typedef enum RBtree_node_color color;
-
 
 static node grandparent(node n);
 static node sibling(node n);
@@ -85,5 +85,6 @@ void print_tree_helper(RBtree_node n, int step);
 
 int RBtree_height(struct RBtree_node_t* ptr); //높이
 int count_node(struct RBtree_node_t* ptr); //개수
+int seatCheck(RBtree t, char start, char dest, int str, int num);
 
 #endif 
