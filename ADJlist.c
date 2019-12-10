@@ -17,8 +17,8 @@ int pathCheck(char random_path[100][3], int num) {
 }
 
 void random_City_Position(City* city) {
-	
-	
+
+
 	for (int i = 0; i < 26; i++) {
 		city[i].name = i + 'a';
 		city[i].pos_x = rand() % 6000 - 3000;
@@ -28,18 +28,18 @@ void random_City_Position(City* city) {
 void insertNode(char start, char dest, int times) {
 	int tstart = start - 'a';
 	int tdest = dest - 'a';
-	int ttm=0;
+	int ttm = 0;
 	NODE* cur, * Newnode;
 	Newnode = (NODE*)malloc(sizeof(NODE));
-	Newnode->length=(int)sqrt(pow(city[tstart].pos_x - city[dest].pos_x, 2) + pow(city[tstart].pos_y - city[dest].pos_y, 2));
+	Newnode->length = (int)sqrt(pow(city[tstart].pos_x - city[dest].pos_x, 2) + pow(city[tstart].pos_y - city[dest].pos_y, 2));
 	//Newnode->length = ;
 	Newnode->next = NULL;
 	Newnode->data = dest;
 	for (int i = 0; i < 31; i++) {
-		ttm=rand() % 24; // ¹«ÀÛÀ§ ½Ã°£ 
-		Newnode->tm[i]= ttm;
+		ttm = rand() % 24; // ë¬´ì‘ìœ„ ì‹œê°„ 
+		Newnode->tm[i] = ttm;
 	}
-	
+
 	cur = Adjlist[tstart].head->next;
 	if ((Adjlist[tstart].len == 0)) {
 		Newnode->next = cur;
@@ -73,26 +73,25 @@ void insertNode(char start, char dest, int times) {
 }
 
 void init_Node() {
-	
+
 	for (int i = 0; i < 26; i++) {
 		Adjlist[i].head = (NODE*)malloc(sizeof(NODE));
 		Adjlist[i].head->next = NULL;
 		Adjlist[i].len = 0;
 	}
 }
-void PrintList(int i) {
-	printf("%c\n", i);
-	i = i - 'a';
-	NODE* cur;
-	int dec;
-	printf("°¥ ¼ö ÀÖ´Â ¿©ÇàÁö: ");
-	cur = Adjlist[i].head->next;
-	while (!cur == NULL) {
-		printf("%c ", cur->data);
-		cur = cur->next;
-
+void PrintList(char start) {
+	printf("\t\t\t\t\tê°ˆ ìˆ˜ ìˆëŠ” ì—¬í–‰ì§€: ");
+	for (int i = 0; i < 26; i++) {
+		if (i == start - 'a')
+			continue;
+		memset(visited, 0, sizeof(visited));
+		int result = checkDestination(start - 'a', i);
+		if (result == 1) {
+			printf("%c ", i + 'a');
+		}
 	}
-	printf("\n");
+	printf("\n\n");
 }
 
 void PrintListTime(char city_name, int date_num) {
@@ -102,19 +101,19 @@ void PrintListTime(char city_name, int date_num) {
 	else k = 23;
 	NODE* cur;
 	int dec;
-	printf("\t\t\t\t\t¦®");  //Ã¹¹øÂ° ÁÙ
-	for (int i = 0; i < k; i++) printf("¦¬");
-	printf("¦¯\n");
-	printf("\t\t\t\t\t¦­ ");
-	printf("<%c°øÇ× %dÀÏÀÇ ½Ã°£Ç¥>", city_name, date_num);
-	printf("  ¦­ \n");
-	printf("\t\t\t\t\t¦±");  //¼¼¹ø Â° ÁÙ
-	for (int i = 0; i < k; i++) printf("¦¬");
-	printf("¦°\n\n");
-	
+	printf("\t\t\t\t\tâ”");  //ì²«ë²ˆì§¸ ì¤„
+	for (int i = 0; i < k; i++) printf("â”");
+	printf("â”“\n");
+	printf("\t\t\t\t\tâ”ƒ ");
+	printf("<%cê³µí•­ %dì¼ì˜ ì‹œê°„í‘œ>", city_name, date_num);
+	printf("  â”ƒ \n");
+	printf("\t\t\t\t\tâ”—");  //ì„¸ë²ˆ ì§¸ ì¤„
+	for (int i = 0; i < k; i++) printf("â”");
+	printf("â”›\n\n");
+
 	cur = Adjlist[i].head->next;
 	while (!cur == NULL) {
-		printf("\t\t\t\t\t> %c -> %c %d½Ã\n", city_name, cur->data, cur->tm[date_num]);
+		printf("\t\t\t\t\t> %c -> %c %dì‹œ\n", city_name, cur->data, cur->tm[date_num]);
 		cur = cur->next;
 	}
 	printf("\n");
@@ -122,12 +121,12 @@ void PrintListTime(char city_name, int date_num) {
 
 
 int shortest_path(int start, int arrive, int date) {
-	int used_city[26]; // ¾´ µµ½Ã ÀúÀå
-	int saver[26]; // ÃÖ´ë ÃÖ¼Ò ÀúÀå
-	int savertime[26]; // 24½Ã ±âÁØ ½Ã°£ ÀúÀå
-	int min=0;
-	int min_time=0;
-	for (int i=0; i < 26; i++) {
+	int used_city[26]; // ì“´ ë„ì‹œ ì €ì¥
+	int saver[26]; // ìµœëŒ€ ìµœì†Œ ì €ì¥
+	int savertime[26]; // 24ì‹œ ê¸°ì¤€ ì‹œê°„ ì €ì¥
+	int min = 0;
+	int min_time = 0;
+	for (int i = 0; i < 26; i++) {
 		used_city[i] = 0;
 		saver[i] = 0;
 		savertime[i] = 0;
@@ -138,14 +137,14 @@ int shortest_path(int start, int arrive, int date) {
 	while (1) {
 		cur = Adjlist[i].head->next;
 		while (!cur == NULL) {
-			if (i!=start) {
+			if (i != start) {
 
 			}
 			int stime = cur->tm[date];
-			int runing = ceil((cur->length)/500);// ºñÇà±â·Î ÀÌµ¿½Ã°£ 
+			int runing = ceil((cur->length) / 500);// ë¹„í–‰ê¸°ë¡œ ì´ë™ì‹œê°„ 
 			saver[cur->data] = runing;
-			if (start == i) savertime[cur->data] = stime + runing; // Ã³À½ÀÌ¸é ±×³É ½Ã°£¿¡ ³Ö´Â´Ù 
-			else savertime[cur->data] += runing; // ¾Æ´Ï¸é ¸»°í;
+			if (start == i) savertime[cur->data] = stime + runing; // ì²˜ìŒì´ë©´ ê·¸ëƒ¥ ì‹œê°„ì— ë„£ëŠ”ë‹¤ 
+			else savertime[cur->data] += runing; // ì•„ë‹ˆë©´ ë§ê³ ;
 			cur = cur->next;
 		}
 		used_city[i] = 1;
@@ -155,10 +154,29 @@ int shortest_path(int start, int arrive, int date) {
 			if (saver[min] > saver[i]) min = i;
 		}
 		i = min;
-		
+
 	}
 	return -1;
+
+}
+
+int checkDestination(int start, int dest) {
+	visited[start] = 1;
+	NODE* temp = Adjlist[start].head->next;
 	
+	if (temp != NULL) {
+		if ((temp->data) == dest + 'a') {
+			return 1;
+		}
+	}
+
+	while (temp != NULL) {
+		if (visited[temp->data - 'a'] == 0) {
+			return checkDestination(temp->data - 'a', dest);
+		}
+		temp = temp->next;
+	}
+	return 0;
 }
 
 void make_ADJlist() {
@@ -167,9 +185,9 @@ void make_ADJlist() {
 	char random_path[100][3];
 
 	for (int i = 0; i < 100; i++) {
-		random_path[i][0] = (rand() % 26) + 'a'; // 0Àº Ãâ¹ß
-		random_path[i][1] = (rand() % 26) + 'a'; // 1Àº µµÂø
-		random_path[i][2] = (rand() % 24); //Ãâ¹ß ½Ã°£
+		random_path[i][0] = (rand() % 26) + 'a'; // 0ì€ ì¶œë°œ
+		random_path[i][1] = (rand() % 26) + 'a'; // 1ì€ ë„ì°©
+		random_path[i][2] = (rand() % 24); //ì¶œë°œ ì‹œê°„
 		if ((random_path[i][0] == random_path[i][1]) || pathCheck(random_path, i)) {
 			i--;
 			continue;
@@ -180,8 +198,8 @@ void make_ADJlist() {
 		char start = random_path[i][0];
 		char dest = random_path[i][1];
 		int times = random_path[i][2];
-		insertNode(start,dest, times);
-		
+		insertNode(start, dest, times);
+
 	}
 }
 
