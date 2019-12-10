@@ -41,7 +41,7 @@ void init_Node();
 void PrintList(char start);
 void PrintListTime(char city_name, int date_num);
 void make_ADJlist();
-int checkDestination(int start, int dest);
+void checkDestination(int start);
 
 
 
