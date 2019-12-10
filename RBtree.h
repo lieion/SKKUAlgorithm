@@ -15,6 +15,7 @@ struct customer_info {
 	char source;
 	char destination;
 	int date;
+	char seat[3];
 };
 
 int array_RBTree[601];  //RBTree
@@ -79,7 +80,7 @@ static void delete_case5(RBtree t, node n);
 static void delete_case6(RBtree t, node n);
 int compare_int(void* left, void* right);
 
- void print_tree(RBtree t);
+void print_tree(RBtree t);
 void print_tree_helper(RBtree_node n, int step);
 
 int RBtree_height(struct RBtree_node_t* ptr); //높이
