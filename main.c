@@ -17,6 +17,7 @@ void seat_print(RBtree t, char start, char dest); //좌석 정보 출력
 int seatCheck(RBtree t, char start, char dest, int str, int num);
 
 int main() {
+	srand(time(NULL));
 	RBtree t = RBtree_create();
 	group_20_aircraft_print(); //air print
 	random_City_Position(city);
@@ -171,6 +172,8 @@ int main() {
 				array_RBTree[reserve_check_number] = reserve_check_number;
 				RBtree_insert(t, (void*)array_RBTree[reserve_check_number], compare_int);
 				reserve_check_number++;
+				printf("\t\t\t\t\tRed-Black tree height : %d \n", RBtree_height(t->root));
+				printf("\t\t\t\t\tRed-Black tree  count node : %d\n ", count_node(t->root));
 
 			}
 		}
@@ -268,6 +271,8 @@ int main() {
 				printf("\t\t\t\t\t┗");  //세번 째 줄
 				for (int i = 0; i < 25; i++) printf("━");
 				printf("┛\n\n");
+				printf("\t\t\t\t\tRed-Black tree height : %d \n", RBtree_height(t->root));
+				printf("\t\t\t\t\tRed-Black tree  count node : %d\n ", count_node(t->root));
 			}
 			else printf("\t\t\t\t\t조회되지 않는 번호 입니다.\n\n");
 
