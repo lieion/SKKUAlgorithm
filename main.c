@@ -22,13 +22,13 @@ int main() {
 	random_reserve(t);
 	make_ADJlist();
 	int choose_number;
+	
 	printf("***********************************************************************************************************************\n");
 
 	printf("\t\t\t\t\tRed-Black tree height : %d \n", RBtree_height(t->root));
 	printf("\t\t\t\t\tRed-Black tree  count node : %d\n ", count_node(t->root));
-	
-	while (1) {
 
+	while (1) {
 		printf("\t\t\t\t\t***********************************\n");
 		printf("\t\t\t\t\t    해당하는 숫자를 입력하세요!\n");
 		printf("\n\t\t\t\t\t    ***  여행지를 선택 : 1 ***\n");
@@ -61,7 +61,7 @@ int main() {
 					//비행 정보 출력 
 					source_name();  //출발지 
 					printf("\t\t\t\t\t-> ");
-					scanf("  %c", &reservation[reserve_check_number].source);  
+					scanf("  %c", &reservation[reserve_check_number].source);
 					airport = reservation[reserve_check_number].source;
 					printf("\n");
 
@@ -78,7 +78,7 @@ int main() {
 							while (getchar() != '\n');
 						}
 					} while (flag0);
-					
+
 					if (temp_date_check > 31) {
 						while (1) {
 							printf("\t\t\t\t\t날짜를 다시 입력하세요!\n");
@@ -96,23 +96,24 @@ int main() {
 
 							if (temp_date_check <= 31) break;
 						}
-					
+
 					}
 					else {
 						reservation[reserve_check_number].date = temp_date_check;
 						flight_day = reservation[reserve_check_number].date;
-						
+
 						PrintListTime(airport, flight_day);
 					}
-				
+
 				}
 
-		    else {
-				destination_name();  //도착지 
-				printf("\t\t\t\t\t-> ");			
-				scanf(" %c", &reservation[reserve_check_number].destination);  	
-				printf("\n");
-		 
+				else {
+					destination_name();  //도착지 
+					PrintList(airport);
+					printf("\t\t\t\t\t-> ");
+					scanf(" %c", &reservation[reserve_check_number].destination);
+					printf("\n");
+
 				}
 			}
 			//make_route(reservation[reserve_check_number].source, reservation[reserve_check_number].destination, reservation[reserve_check_number].date);
@@ -195,7 +196,7 @@ int main() {
 				printf("고객 이름 : %s", reservation[check].name);
 				for (int i = 0; i < 20 - (13 + strlen(reservation[check].name)); i++) 	printf(" ");
 				printf("┃ \n");
-				
+
 				printf("\t\t\t\t\t┃ ");
 				printf("출발지    : %c", reservation[check].source);
 				printf("	     ┃ \n");
@@ -203,7 +204,7 @@ int main() {
 				printf("\t\t\t\t\t┃ ");
 				printf("도착지    : %c", reservation[check].destination);
 				printf("	     ┃ \n");
-				
+
 				printf("\t\t\t\t\t┃ ");
 				printf("출발날짜  : %d", reservation[check].date);
 				if (reservation[check].date >= 10)
@@ -230,36 +231,36 @@ int main() {
 			//	break;
 		}
 		else if (choose_number == 3) {
-		int check;
-		printf("\t\t\t\t\t예약 번호를 입력하세요 -> ");
+			int check;
+			printf("\t\t\t\t\t예약 번호를 입력하세요 -> ");
 
-		int  flag3;
-		do {
-			flag3 = 0;
+			int  flag3;
+			do {
+				flag3 = 0;
 
-			if (!scanf("%d", &check)) {
-				printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
-				flag3 = 1;
-				while (getchar() != '\n');
+				if (!scanf("%d", &check)) {
+					printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
+					flag3 = 1;
+					while (getchar() != '\n');
+				}
+			} while (flag3);
+
+			if (RBtree_search_node(t->root, check) != NULL) {
+				RBtree_delete(t, (void*)check, compare_int);
+				printf("\t\t\t\t\t┏");  //첫번째 줄
+				for (int i = 0; i < 25; i++) printf("━");
+				printf("┓\n");
+				printf("\t\t\t\t\t┃ ");
+				printf("예약이 취소되었습니다!");
+				printf("  ┃ \n");
+				printf("\t\t\t\t\t┗");  //세번 째 줄
+				for (int i = 0; i < 25; i++) printf("━");
+				printf("┛\n\n");
 			}
-		} while (flag3);
+			else printf("\t\t\t\t\t조회되지 않는 번호 입니다.\n\n");
 
-		if (RBtree_search_node(t->root, check) != NULL) {
-			RBtree_delete(t, (void*)check, compare_int);
-			printf("\t\t\t\t\t┏");  //첫번째 줄
-			for (int i = 0; i < 25; i++) printf("━");
-			printf("┓\n");
-			printf("\t\t\t\t\t┃ ");
-			printf("예약이 취소되었습니다!");
-			printf("  ┃ \n");
-			printf("\t\t\t\t\t┗");  //세번 째 줄
-			for (int i = 0; i < 25; i++) printf("━");
-			printf("┛\n\n");
 		}
-		else printf("\t\t\t\t\t조회되지 않는 번호 입니다.\n\n");
-		
-		}
-		
+
 		else  if (choose_number != -1 && choose_number > 4) {
 			printf("\t\t\t\t\t다시 입력해주세요 !\n\n\n ");
 		}
@@ -269,7 +270,7 @@ int main() {
 			printf("\t\t\t\t\tRed-Black tree  count node : %d \n\n", count_node(t->root));
 			exit(1);
 		}
-		
+
 	}
 
 	return 0;
@@ -364,8 +365,8 @@ void source_date() {
 	for (int i = 0; i < 30; i++) printf("━");
 	printf("┓\n");
 	printf("\t\t\t\t\t┃ ");
-	printf("출발 날짜를 입력해주세요!");
-	printf("    ┃ \n");
+	printf("  출발 날짜를 입력해주세요!");
+	printf("  ┃ \n");
 	printf("\t\t\t\t\t┗");  //세번 째 줄
 	for (int i = 0; i < 30; i++) printf("━");
 	printf("┛\n\n");
@@ -391,11 +392,8 @@ void destination_name() {
 	for (int i = 0; i < 44; i++) printf("━");
 	printf("┓\n");
 	printf("\t\t\t\t\t┃ ");
-	printf("도착 할  도시를 입력해주세요!");
-	printf("              ┃ \n");
-	printf("\t\t\t\t\t┃ ");
-	printf("'a'부터 'z'사이에서 선택해 주세요!");
-	printf("         ┃ \n");
+	printf("       도착 할  도시를 입력해주세요!");
+	printf("       ┃ \n");
 	printf("\t\t\t\t\t┗");  //세번 째 줄
 	for (int i = 0; i < 44; i++) printf("━");
 	printf("┛\n\n");
