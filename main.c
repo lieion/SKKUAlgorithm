@@ -13,7 +13,8 @@ void random_reserve(RBtree t);
 void source_name(); //출발지 출력
 void destination_name();// 도착지 출력 
 void source_date(); //출발 날짜 출력
-void seat_print();
+void seat_print(RBtree t, char start, char dest); //좌석 정보 출력
+int seatCheck(RBtree t, char start, char dest, int str, int num);
 
 int main() {
 	RBtree t = RBtree_create();
@@ -54,6 +55,7 @@ int main() {
 			int reserve_number;
 			int temp_date_check = 0;
 			char airport;
+			char arrive;
 			int flight_day = 0;
 
 			for (int j = 0; j < 2; j++) {
@@ -112,12 +114,19 @@ int main() {
 					PrintList(airport);
 					printf("\t\t\t\t\t-> ");
 					scanf(" %c", &reservation[reserve_check_number].destination);
+					arrive = reservation[reserve_check_number].destination;
 					printf("\n");
 
 				}
 			}
 			//make_route(reservation[reserve_check_number].source, reservation[reserve_check_number].destination, reservation[reserve_check_number].date);
 			//printf("경로 : \n");
+			
+			seat_print(t, airport, arrive);
+			printf(" \n\t\t\t\t\t -> 좌석을 선택해주세요! \n\n");
+			printf("\t\t\t\t\t -> ");
+			scanf(" %s", &reservation[reserve_check_number].seat);
+			printf("\n");
 			printf(" \n\t\t\t\t\t -> 예약 하시겠습니까? \n");
 
 			printf("\t\t\t\t\t 1  : 예 \n");
@@ -211,6 +220,9 @@ int main() {
 					printf("     ┃ \n");
 				else
 					printf("      ┃ \n");
+				printf("\t\t\t\t\t┃ ");
+				printf("좌석      : %s", reservation[check].seat);
+				printf("     ┃ \n");
 				printf("\t\t\t\t\t┗");  //세번 째 줄
 				for (int i = 0; i < 20; i++) printf("━");
 				printf("┛\n\n");
@@ -401,6 +413,7 @@ void destination_name() {
 
 void random_reserve(RBtree t) {
 	char* cusname = (char*)malloc(sizeof(char) * 10);
+	char* cuspos = (char*)malloc(sizeof(char) * 3);
 	char alpha = 'a';
 	for (int i = 0; i < 500; i++) {
 		int namelen = rand() % 7 + 1;
@@ -413,7 +426,15 @@ void random_reserve(RBtree t) {
 
 		}
 		cusname[namelen] = '\0';
+		for (int j = 0; j < 2; j++) {
+			if (j == 0)
+				cuspos[j] = rand() % 10 + 'A';
+			else
+				cuspos[j] = rand() % 7 + '0';
+		}
+		cuspos[2] = '\0';
 		strcpy(reservation[reserve_check_number].name, cusname);
+		strcpy(reservation[reserve_check_number].seat, cuspos);
 		reservation[reserve_check_number].source = (char)(start + 'a');
 		reservation[reserve_check_number].destination = (char)(arrive + 'a');
 		reservation[reserve_check_number].date = sdate + 1;
@@ -424,7 +445,7 @@ void random_reserve(RBtree t) {
 	}
 }
 
-void seat_print() {
+void seat_print(RBtree t, char start, char dest) {
 	printf("\t\t\t\t\t\t    좌석 정보\n");
 	printf("\t\t\t\t\t   ┏");  //첫번째 줄
 	for (int i = 0; i < 25; i++) printf("━");
@@ -436,11 +457,12 @@ void seat_print() {
 		for (int j = 0; j < 7; j++) {
 			if (j % 10 == 2 || j % 10 == 5)
 				printf("┃ ");
-			int i = rand() % 3;
-			if (i == 0 || i == 1)
+			if (!seatCheck(t, start, dest, j, i)) {
 				printf("o ");
-			else
+			}
+			else {
 				printf("x ");
+			}
 		}
 		printf(" %c", 'J' - i);
 		printf("  ┃");
@@ -449,4 +471,15 @@ void seat_print() {
 	printf("\t\t\t\t\t   ┗");  //마지막 줄
 	for (int i = 0; i < 25; i++) printf("━");
 	printf("┛\n");
+}
+
+int seatCheck(RBtree t, char start, char dest, int str, int num) {
+	for (int i = 0; i <= reserve_check_number; i++) {
+		if ((reservation[i].source == start) && (reservation[i].destination == dest)) {
+			if ((reservation[i].seat[0] - 'A' == str) && (reservation[i].seat[1] - '0' == num)) {
+				return 1;
+			}
+		}
+	}
+	return 0;
 }
