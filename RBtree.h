@@ -15,7 +15,9 @@ struct customer_info {
 	char source;
 	char destination;
 	int date;
+	int seat_level;
 	char seat[3];
+	
 };
 
 int array_RBTree[601];  //RBTree
@@ -83,8 +85,8 @@ int compare_int(void* left, void* right);
 void print_tree(RBtree t);
 void print_tree_helper(RBtree_node n, int step);
 
-int RBtree_height(struct RBtree_node_t* ptr); //³ôÀÌ
-int count_node(struct RBtree_node_t* ptr); //°³¼ö
+int RBtree_height(struct RBtree_node_t* ptr); //Â³Ã´Ã€ÃŒ
+int count_node(struct RBtree_node_t* ptr); //Â°Â³Â¼Ã¶
 int seatCheck(RBtree t, char start, char dest, int str, int num);
 
 #endif 
