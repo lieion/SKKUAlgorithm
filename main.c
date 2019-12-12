@@ -155,13 +155,13 @@ int main() {
 			scanf(" %s", &reservation[reserve_check_number].seat);
 			strcpy(seat, reservation[reserve_check_number].seat);
 			
-			if (seatCheck(t, airport, arrive, 9 - (seat[0] - 'A'), seat[1] - '0')) {
+			if (seatCheck(t, airport, arrive, seat[0] - 'A', seat[1] - '0')) {
 				do {
 					printf("\n\t\t\t\t\t좌석을 다시 입력하세요!\n");
 					printf("\n\t\t\t\t\t-> ");
 					scanf(" %s", &reservation[reserve_check_number].seat);
 					strcpy(seat, reservation[reserve_check_number].seat);
-				} while (seatCheck(t, airport, arrive, 9 - (seat[0] - 'A'), seat[1] - '0'));
+				} while (seatCheck(t, airport, arrive,  seat[0] - 'A', seat[1] - '0'));
 			}
 			printf("\n");
 			printf(" \n\t\t\t\t\t -> 원하시는 좌석 등급을 선택해주세요! \n");
@@ -542,7 +542,7 @@ void seat_print(RBtree t, char start, char dest) {
 		for (int j = 0; j < 7; j++) {
 			if (j % 10 == 2 || j % 10 == 5)
 				printf("┃ ");
-			if (!seatCheck(t, start, dest, j, i)) {
+			if (!seatCheck(t, start, dest, 9 - i, j)) {
 				printf("o ");
 			}
 			else {
