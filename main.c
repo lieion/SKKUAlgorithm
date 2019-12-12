@@ -151,7 +151,18 @@ int main() {
 			seat_print(t, airport, arrive);
 			printf(" \n\t\t\t\t\t -> 좌석을 선택해주세요! \n\n");
 			printf("\t\t\t\t\t -> ");
+			char seat[3];
 			scanf(" %s", &reservation[reserve_check_number].seat);
+			strcpy(seat, reservation[reserve_check_number].seat);
+			
+			if (seatCheck(t, airport, arrive, 9 - (seat[0] - 'A'), seat[1] - '0')) {
+				do {
+					printf("\n\t\t\t\t\t좌석을 다시 입력하세요!\n");
+					printf("\n\t\t\t\t\t-> ");
+					scanf(" %s", &reservation[reserve_check_number].seat);
+					strcpy(seat, reservation[reserve_check_number].seat);
+				} while (seatCheck(t, airport, arrive, 9 - (seat[0] - 'A'), seat[1] - '0'));
+			}
 			printf("\n");
 			printf(" \n\t\t\t\t\t -> 원하시는 좌석 등급을 선택해주세요! \n");
 			printf(" \n\t\t\t\t\t 1 : prestige class  ( 가격  :  $3100 ) \n\n");
