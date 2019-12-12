@@ -360,23 +360,32 @@ void print_path(char start, char arrive) {
 }
 
 void print_time(int date) {
-	int sdat, edat, sclock, eclock;
+	int sdat=0, edat=0, sclock=0, eclock=0;
 	int dat = date;
 	//printf("len: %d\n", len);
 	int spend_time = 0;
 	int clock = 0;
 	int his = 0;
+	int temp = 0;
+	int temp_sp = 0;
 	for (int i = len; i >= 1; i--) {
-		int temp = 0;
-		int temp_sp = 0;
+		
 		NODE* cur;
 		printf("\n\t\t\t\t\t>>%c 공항\n\n", trav[i] + 'a');
 		cur = Adjlist[trav[i]].head->next;
 		while (cur != NULL) {
 			//printf("here!\n");
 			if ((cur->data) - 'a' == trav[i - 1]) {
+				temp_sp = ceil((double)(cur->length) / 500);
+				printf("%d", cur->length);
+				printf("|%d|", temp_sp);
+				if (clock + temp_sp >= 24) {
+					++dat;
+					clock = clock + temp_sp - clock;
+				}
+				if (cur->tm[dat] < clock) dat++;
 				temp = cur->tm[dat];
-				temp_sp = ceil((cur->length) / 500);
+				printf("1");
 				his = 1;
 				break;
 			}
@@ -384,10 +393,12 @@ void print_time(int date) {
 		}
 		if (his == 1) {
 			clock = temp;
+			printf("here");
 			printf("\t\t\t\t\t12월 %d일 %d시 정각 출발\n", dat, clock);
 			if (i == len) {
 				sdat = dat;
 				sclock = clock;
+				printf("2");
 			}
 			clock += temp_sp;
 			spend_time += temp_sp;
@@ -395,10 +406,15 @@ void print_time(int date) {
 		}
 		else {
 			if (temp <= clock) {
-				spend_time += temp + 24 - clock;
 				dat++;
+				spend_time += temp + 24 - clock;
+				
+				printf("here");
 			}
-			else spend_time += temp - clock;
+			else {
+				printf("here3");
+				spend_time += temp - clock;
+			}
 			clock = temp;
 			clock + temp_sp;
 
@@ -407,6 +423,7 @@ void print_time(int date) {
 		if (clock >= 24) {
 			dat++;
 			clock = clock - 24;
+			printf("here2");
 		}
 		printf("\t\t\t\t\t12월 %d일 %d시 정각 도착\n", dat, clock);
 
