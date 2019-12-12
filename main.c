@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "RBtree.h"
 #include "ADJlist.h"
 
@@ -65,11 +66,22 @@ int main() {
 					source_name();  //출발지 
 					printf("\t\t\t\t\t-> ");
 					scanf("  %c", &reservation[reserve_check_number].source);
+					if (!isalpha(reservation[reserve_check_number].source)) {
+						while (1) {
+							printf("\t\t\t\t\t문자로 입력해주세요! \n");
+							printf("\t\t\t\t\t-> ");
+							scanf("  %c", &reservation[reserve_check_number].source);
+							if (isalpha(reservation[reserve_check_number].source))
+								break;
+						}
+					}
 					airport = reservation[reserve_check_number].source;
 					printf("\n");
 
 					squre_box_print(); //출발 날짜 box
 					source_date();
+					
+
 					int  flag0;
 					do {
 						flag0 = 0;
@@ -82,25 +94,29 @@ int main() {
 						}
 					} while (flag0);
 
-					if (temp_date_check > 31) {
+					if (temp_date_check > 31 || temp_date_check <0 ) {
 						while (1) {
 							printf("\t\t\t\t\t날짜를 다시 입력하세요!\n");
+							
 							int  flag5;
 							do {
 								flag5 = 0;
 								printf("\t\t\t\t\t  -> ");
 
 								if (!scanf("\t\t\t\t\t%d", &temp_date_check)) {
+								
 									printf("\t\t\t\t\t숫자가 아닙니다. \n\n");
 									flag5 = 1;
 									while (getchar() != '\n');
 								}
 							} while (flag5);
 
-							if (temp_date_check <= 31) break;
+							if (temp_date_check <= 31  && temp_date_check  >0) break;
 						}
-
+				
 					}
+				
+
 					else {
 						reservation[reserve_check_number].date = temp_date_check;
 						flight_day = reservation[reserve_check_number].date;
@@ -115,6 +131,15 @@ int main() {
 					PrintList(airport);
 					printf("\t\t\t\t\t-> ");
 					scanf(" %c", &reservation[reserve_check_number].destination);
+					if (!isalpha(reservation[reserve_check_number].destination)) {
+						while (1) {
+							printf("\t\t\t\t\t문자로 입력해주세요!\n ");
+							printf("\t\t\t\t\t-> ");
+							scanf("  %c", &reservation[reserve_check_number].destination);
+							if (isalpha(reservation[reserve_check_number].destination))
+								break;
+						}
+					}
 					arrive = reservation[reserve_check_number].destination;
 					printf("\n");
 
@@ -134,7 +159,16 @@ int main() {
 			printf(" \n\t\t\t\t\t 3 : economy class ( 가격 :  $700 )\n\n");
 			printf("\t\t\t\t\t -> ");
 			scanf(" %d", &reservation[reserve_check_number].seat_level);
-
+			if (reservation[reserve_check_number].seat_level < 0 || reservation[reserve_check_number].seat_level >3) {
+				while (1) {
+					printf("\t\t\t\t\t 잘못입력하였습니다!\n ");
+					printf("\t\t\t\t\t -> ");
+					scanf(" %d", &reservation[reserve_check_number].seat_level);
+					if (reservation[reserve_check_number].seat_level > 0 && reservation[reserve_check_number].seat_level <= 3)
+						break;
+				}
+			}
+		
 			printf(" \n\t\t\t\t\t -> 예약 하시겠습니까? \n");
 
 			printf("\t\t\t\t\t 1  : 예 \n");
