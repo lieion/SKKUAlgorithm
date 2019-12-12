@@ -377,15 +377,14 @@ void print_time(int date) {
 			//printf("here!\n");
 			if ((cur->data) - 'a' == trav[i - 1]) {
 				temp_sp = ceil((double)(cur->length) / 500);
-				printf("%d", cur->length);
-				printf("|%d|", temp_sp);
+				
 				if (clock + temp_sp >= 24) {
 					++dat;
 					clock = clock + temp_sp - clock;
 				}
 				if (cur->tm[dat] < clock) dat++;
 				temp = cur->tm[dat];
-				printf("1");
+		
 				his = 1;
 				break;
 			}
@@ -393,12 +392,12 @@ void print_time(int date) {
 		}
 		if (his == 1) {
 			clock = temp;
-			printf("here");
+		
 			printf("\t\t\t\t\t12월 %d일 %d시 정각 출발\n", dat, clock);
 			if (i == len) {
 				sdat = dat;
 				sclock = clock;
-				printf("2");
+			
 			}
 			clock += temp_sp;
 			spend_time += temp_sp;
@@ -409,10 +408,10 @@ void print_time(int date) {
 				dat++;
 				spend_time += temp + 24 - clock;
 				
-				printf("here");
+			
 			}
 			else {
-				printf("here3");
+				
 				spend_time += temp - clock;
 			}
 			clock = temp;
@@ -423,7 +422,7 @@ void print_time(int date) {
 		if (clock >= 24) {
 			dat++;
 			clock = clock - 24;
-			printf("here2");
+			
 		}
 		printf("\t\t\t\t\t12월 %d일 %d시 정각 도착\n", dat, clock);
 

@@ -1,4 +1,4 @@
-#ifndef RBtree_H
+﻿#ifndef RBtree_H
 #define RBtree_H
 
 #include <stdio.h>
@@ -17,7 +17,7 @@ struct customer_info {
 	int date;
 	int seat_level;
 	char seat[3];
-	
+
 };
 
 int array_RBTree[601];  //RBTree
